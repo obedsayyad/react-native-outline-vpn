@@ -12,6 +12,7 @@ export interface vpnOptions {
 
 export interface VpnModule {
   startVpn(options: VpnOptions): Promise<boolean | string>;
+  stopVpn(): Promise<void>;
 }
 
 declare const vpnModule: VpnModule;

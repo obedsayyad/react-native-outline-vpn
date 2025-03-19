@@ -23,6 +23,7 @@ import android.os.Build;
 // android.intent.action.BOOT_COMPLETED and android.intent.action.MY_PACKAGE_REPLACED.
 public class VpnServiceStarter extends BroadcastReceiver {
   public static final String AUTOSTART_EXTRA = "autostart";
+  public static final String STOP = "stop";
 
   @Override
   public void onReceive(Context context, Intent intent) {

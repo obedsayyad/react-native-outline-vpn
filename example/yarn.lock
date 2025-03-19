@@ -6660,14 +6660,14 @@ __metadata:
   linkType: hard
 
 "react-native-outline-vpn@file:../package/::locator=OutlineVpnExample%40workspace%3A.":
-  version: 1.0.2
-  resolution: "react-native-outline-vpn@file:../package/#../package/::hash=0120ff&locator=OutlineVpnExample%40workspace%3A."
+  version: 1.0.6
+  resolution: "react-native-outline-vpn@file:../package/#../package/::hash=442f14&locator=OutlineVpnExample%40workspace%3A."
   dependencies:
     metro-react-native-babel-preset: ^0.77.0
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 8d09336cd898c40db1b852148c428ac7f0dd66c3ecb02e00bf4864b73c89945a7af148bafb37e58a95a2a9a33656aba701a49bb7ff68f7a7010a4fb99cb09e1a
+  checksum: c42ddefcd0bb3c1ddba3e1f7d9aa641d81422fc451f9d5291f977dc443e81012a175717bfca857559c69da94ec20b53ae3eda6c8ea55646c4ef2ee544014a942
   languageName: node
   linkType: hard
 

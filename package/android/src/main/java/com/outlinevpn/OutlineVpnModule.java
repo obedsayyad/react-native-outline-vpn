@@ -4,6 +4,10 @@ import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.net.VpnService;
 import android.content.IntentFilter;
+import android.content.ComponentName;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+import android.content.Context;
 import static android.app.Activity.RESULT_OK;
 import android.app.Activity;
 
@@ -31,6 +35,17 @@ public class OutlineVpnModule extends ReactContextBaseJavaModule {
     _reactContext = reactContext;
     vpnTunnelStore = new VpnTunnelStore(_reactContext);
   }
+
+  private final ServiceConnection vpnServiceConnection = new ServiceConnection() {
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+    }
+  };
+
 
   @Override
   @NonNull
@@ -101,6 +116,20 @@ public class OutlineVpnModule extends ReactContextBaseJavaModule {
       startVpnService();
       promise.resolve(true);
   }
+
+  @ReactMethod
+  public void disconnectVpn(Promise promise) {
+    try {
+      Context context = getReactApplicationContext();
+      Intent intent = new Intent(context, VpnTunnelService.class);
+      intent.putExtra(VpnServiceStarter.STOP, true);
+      context.bindService(intent, vpnServiceConnection, Context.BIND_AUTO_CREATE);
+      promise.resolve("Vpn disconnected successfully");
+    } catch (Exception e) {
+        promise.reject("ERROR_BINDING_SERVICE", e);
+    }
+  }
+
 
   private void startVpnService() {
     Intent intent = new Intent(getReactApplicationContext(), VpnTunnelService.class);

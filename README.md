@@ -16,9 +16,12 @@ yarn add react-native-outline-vpn
 
 ## Usage
 
+### Starting VPN
 ```tsx copy
 import Outline from 'react-native-outline-vpn';
 // THIS VPN INFORMATIONS INTENTIONALLY LEFT EXPOSED, HAS 0 MB LIMIT SO CANNOT ACCESS INTERNET BUT COULD BE USE FOR TEST VPN CONNECTION
+
+// Start VPN
 Outline.startVpn({
 	host:'185.218.124.25',
 	port: 42248,
@@ -30,6 +33,9 @@ Outline.startVpn({
 	tunnelId: 'OutlineTunnel', //can be random string
 	localizedDescription: 'OutlineVpn', //can be random string
 });
+
+// Stop VPN
+Outline.stopVpn();
 ```
 
 > Android hasn't need any additional configuration, but iOS needs some additional configuration. Please check the [documentation](https://rn-outline.vercel.app/) for more information.

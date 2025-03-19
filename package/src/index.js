@@ -63,4 +63,7 @@ export default {
   startVpn(options) {
     return startVpn(options);
   },
+  stopVpn() {
+    return OutlineVpn.disconnectVpn();
+  },
 };

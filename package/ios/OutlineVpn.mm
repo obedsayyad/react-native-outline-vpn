@@ -7,6 +7,26 @@ NETunnelProviderManager *manager;
 
 RCT_EXPORT_MODULE()
 
+RCT_EXPORT_METHOD(disconnectVpn:successCallback:(RCTResponseSenderBlock)successCallback
+                  rejectCallback:(RCTResponseSenderBlock)rejectCallback)
+{
+    [NETunnelProviderManager loadAllFromPreferencesWithCompletionHandler:^(NSArray<NETunnelProviderManager *> *managers, NSError *error) {
+        if (error) {
+            rejectCallback(@[@"VPN Manager cannot retrived: %@", error.localizedDescription]);
+            return;
+        }
+
+        __block NETunnelProviderManager *manager;
+        if (managers.count > 0) {
+            manager = managers.firstObject;
+        } else {
+            manager = [[NETunnelProviderManager alloc] init];
+        }
+        [manager.connection stopVPNTunnel];
+        successCallback(@[@"VPN stopped successfuly"]);
+    }];
+}
+
 RCT_EXPORT_METHOD(startVpn:(NSString *)host
                   port:(NSInteger)port
                   password:(NSString *)password

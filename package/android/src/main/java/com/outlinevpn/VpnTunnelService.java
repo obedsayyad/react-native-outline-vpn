@@ -30,6 +30,7 @@ import android.net.NetworkRequest;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.Binder;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -150,6 +151,9 @@ public class VpnTunnelService extends VpnService {
     String action = intent.getAction();
     if (action != null && action.equals(SERVICE_INTERFACE)) {
       return super.onBind(intent);
+    }
+    if (intent.getBooleanExtra(VpnServiceStarter.STOP, false)) {
+      tearDownActiveTunnel();
     }
     if (intent.getBooleanExtra(VpnServiceStarter.AUTOSTART_EXTRA, false)) {
       startLastSuccessfulTunnel();

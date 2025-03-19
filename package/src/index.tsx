@@ -67,4 +67,7 @@ export default {
   startVpn(options: vpnOptions): Promise<Boolean | String> {
     return startVpn(options);
   },
+  stopVpn() {
+    return OutlineVpn.disconnectVpn();
+  },
 };

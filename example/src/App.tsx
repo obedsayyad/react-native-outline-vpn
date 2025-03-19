@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import Outline from 'react-native-outline-vpn';
 
 export default function App() {
@@ -22,6 +22,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>VPN Starting...</Text>
+      <TouchableOpacity onPress={() => Outline.stopVpn()} style={{marginTop: 20}}>
+            <Text>Tap for Stopping...</Text>
+      </TouchableOpacity>
+
     </View>
   );
 }
