@@ -78,11 +78,7 @@ public class VpnTunnel {
     LOG.info("Establishing the VPN.");
     try {
       dnsResolverAddress = selectDnsResolverAddress();
-      String dnsAddress = "1.1.1.1";
-      try{
-        JSONObject getVPNConfig = vpnService.getVPNConfig();
-        dnsAddress = getVPNConfig.getString("host");
-      }catch (JSONException e){}
+      String dnsAddress = "1.1.1.1"; // Default DNS if selection fails.
       VpnService.Builder builder =
               vpnService.newBuilder()
                       .setSession(vpnService.getApplicationName())
